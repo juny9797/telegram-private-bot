@@ -1,10 +1,9 @@
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 from html import escape
-import asyncio
-import datetime
 
-ADMIN_ID = 7695731166  # 관리자 텔레그램 ID
+# 관리자 텔레그램 ID
+ADMIN_ID = 7695731166
 
 # /start 명령어 처리
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -38,7 +37,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(welcome_message, reply_markup=reply_markup, parse_mode='HTML')
 
-
 # 버튼 클릭 응답
 async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -53,7 +51,6 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await query.message.reply_text(button_texts.get(query.data, "알 수 없는 요청입니다."))
 
-
 # 일반 메시지를 관리자에게 전달
 async def forward_to_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
@@ -64,8 +61,7 @@ async def forward_to_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=ADMIN_ID, text=forward_text)
     await update.message.reply_text("문의가 접수되었습니다. 담당자가 확인 후 순차적으로 답변드릴 예정입니다.")
 
-
-# 관리자 답변 기능 (/답변 USERID 내용)
+# 관리자 답변 처리
 async def reply_to_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != ADMIN_ID:
         return
@@ -76,7 +72,6 @@ async def reply_to_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("답변 전송 완료 ✅")
     except Exception:
         await update.message.reply_text("답변 형식 오류입니다.\n예: /답변 123456789 안녕하세요. 문의 주신 건은...")
-
 
 # 앱 실행
 app = ApplicationBuilder().token("7310597734:AAElXF8USSHGUoKmatSSSgujn5WJKkH357c").build()
