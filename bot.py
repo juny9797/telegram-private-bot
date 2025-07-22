@@ -63,7 +63,7 @@ async def forward_to_admin(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("문의가 접수되었습니다. 담당자가 확인 후 순차적으로 답변드릴 예정입니다.")
 
 
-# 관리자 답변 기능 (/답변 USERID 내용)
+# 관리자 답변 기능 (/reply USERID 내용)
 async def reply_to_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != ADMIN_ID:
         return
@@ -73,13 +73,13 @@ async def reply_to_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=int(user_id), text=f"[관리자 답변]\n{reply_text}")
         await update.message.reply_text("답변 전송 완료 ✅")
     except Exception:
-        await update.message.reply_text("답변 형식 오류입니다.\n예: /답변 123456789 안녕하세요. 문의 주신 건은...")
+        await update.message.reply_text("답변 형식 오류입니다.\n예: /reply 123456789 안녕하세요. 문의 주신 건은...")
 
 
 # 앱 실행
 app = ApplicationBuilder().token("7310597734:AAElXF8USSHGUoKmatSSSgujn5WJKkH357c").build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
-app.add_handler(CommandHandler("답변", reply_to_user))
+app.add_handler(CommandHandler("reply", reply_to_user))  # <-- 영어 명령어만 가능
 app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), forward_to_admin))
 app.run_polling()
