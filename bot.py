@@ -28,7 +28,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 <b>private은</b> 제휴라는 단어로 유저들을 거짓 현혹하지 않고 무책임한 거짓 약속은 절대 하지 않습니다.
 <b><u>단, 장기간 정상적으로 운영 중인 업자를 엄선하여 '추천'합니다.
 이 또한 각종 사고에 휘말릴 경우 피해자와 최대한 정보를 공유하며 업계에서 완전한 폐기 조치합니다.
-</u><b>
+</u></b>
 
     keyboard = [
         [InlineKeyboardButton("🔒 private입장", callback_data="private_entry")],
