@@ -78,7 +78,7 @@ async def reply_to_user(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("답변 형식 오류입니다.\n예: /답변 123456789 안녕하세요. 문의 주신 건은...")
 
 # 실행 메인
-app = ApplicationBuilder().token("YOUR_BOT_TOKEN").build()
+app = ApplicationBuilder().token("7310597734:AAElXF8USSHGUoKmatSSSgujn5WJKkH357c").build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CallbackQueryHandler(button_handler))
