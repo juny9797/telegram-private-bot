@@ -1,6 +1,8 @@
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 from html import escape
+import asyncio
+import datetime
 
 ADMIN_ID = 7695731166  # 관리자 텔레그램 ID
 
